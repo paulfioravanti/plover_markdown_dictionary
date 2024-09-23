@@ -179,7 +179,7 @@ class MarkdownDictionary(StenoDictionary):
         self.plover_adds_section_end_index = None
 
     def _load(self, filename):
-        with open(filename, "r") as f:
+        with open(filename, mode="r", encoding="utf-8") as f:
             lines = f.readlines()
 
         in_code_block = None
@@ -313,5 +313,5 @@ class MarkdownDictionary(StenoDictionary):
                 self.rich_lines.extend(new_adds_lines)
                 self.rich_lines.append(Prose("```\n", True))
 
-        with open(filename, "w") as f:
+        with open(filename, mode="w", encoding="utf-8") as f:
             f.write("".join([str(rich_line) for rich_line in self.rich_lines]))
